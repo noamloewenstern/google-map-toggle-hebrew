@@ -1,25 +1,65 @@
-# chrome.action
+# Maps Toggle - Hebrew Google Maps Extension
 
-This sample demonstrates the use of Action API which changes the badge text,icon,hover text or popup page depending on the user's choice or action.
+A simple Chrome extension that allows users to easily toggle Hebrew language support on Google Maps by adding or removing the `hl=iw` URL parameter.
 
-[API Link](https://developer.chrome.com/docs/extensions/reference/action/)
+## Features
 
-## Overview
+- **One-click toggle**: Quickly switch between Hebrew and default language on Google Maps
+- **Visual status indicator**: Clear visual feedback showing whether Hebrew is enabled or disabled
+- **Smart detection**: Automatically detects if you're on a Google Maps page
+- **Clean interface**: Minimalist popup with intuitive controls
 
-This sample demonstrates the Action API by allowing the user to perform the below actions:
+## How it Works
 
-- Toggle Enabled State : to enable or disable the extensions' action button in Chrome's toolbar and menu.
-- Change Popup Page : to change the popup page by entering a new string or url.
-- Badge Text : to insert a text overlay with a solid background color.
-- Icon Image : to change the action button's icon.
-- Hover Text : it is visible when mousing over the extension's icon.
+The extension adds the URL parameter `hl=iw` to Google Maps URLs, which forces the interface to display in Hebrew. When the parameter is removed, Google Maps reverts to its default language behavior.
 
-## Implementation Notes
+### URL Parameter Details
+- **Parameter**: `hl` (language hint)
+- **Value**: `iw` (Hebrew/Israeli locale)
+- **Example**: `https://maps.google.com/maps?hl=iw`
 
-The user can set values to implement above functionalities from [here](demo/index.html)
+## Installation
 
-## Running this extension
+1. Clone this repository or download the source code
+2. Open Chrome and navigate to `chrome://extensions/`
+3. Enable "Developer mode" in the top right corner
+4. Click "Load unpacked" and select the extension directory
+5. The extension will appear in your Chrome toolbar
 
-1. Clone this repository.
-2. Load this directory in Chrome as an [unpacked extension](https://developer.chrome.com/docs/extensions/mv3/getstarted/development-basics/#load-unpacked).
-3. Click the extension's icon in the toolbar to open the demo page.
+## Usage
+
+1. Navigate to any Google Maps page (`maps.google.com` or `google.com/maps`)
+2. Click the Maps Toggle extension icon in your toolbar
+3. The popup will show the current status:
+   - ✅ **Green**: Hebrew is enabled (`hl=iw` parameter present)
+   - ⛔ **Red**: Hebrew is disabled (parameter absent)
+   - ⚠️ **Yellow**: Not on a Google Maps page
+4. Click "Toggle Hebrew" to switch between enabled and disabled states
+5. The page will automatically reload with the new language setting
+
+## Permissions
+
+This extension requires the following permissions:
+
+- **tabs**: To access and modify the current tab's URL
+- **Host permissions**: `https://maps.google.com/*` and `https://www.google.com/maps/*`
+
+## Browser Compatibility
+
+- Chrome 88+
+- Chromium-based browsers (Edge, Brave, etc.)
+
+## Technical Details
+
+- **Manifest Version**: 3 (Chrome Extension Manifest V3)
+- **API Used**: `chrome.tabs` for URL manipulation
+- **Languages**: JavaScript, HTML, CSS
+- **Size**: Lightweight with minimal resource usage
+
+## Contributing
+
+Feel free to submit issues, feature requests, or pull requests to improve this extension.
+
+## License
+
+This project is open source. Feel free to use and modify as needed.
